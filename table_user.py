@@ -1,5 +1,5 @@
 from database import Base, SessionLocal
-from sqlalchemy import Column, Integer, String, func, select
+from sqlalchemy import Column, Integer, String, func
 
 class User(Base):
     """Оборачивает БД user в ORM"""
@@ -17,6 +17,23 @@ if __name__ == "__main__":
     
     # открываю сессию
     session = SessionLocal()
+
+# sql шпаргалка по запросу ниже:
+# SELECT
+#   country,
+#   os,
+#   COUNT(*)
+# FROM
+#   "user"
+# WHERE
+#   exp_group = 3
+# GROUP BY
+#   country,
+#   os 
+# HAVING
+#   COUNT(*) > 100
+# ORDER BY
+#   COUNT(*) DESC
 
     print(session.query(User.country, User.os, func.count()) # 3 колонки беру в очередь
                  .filter_by(exp_group = 3) # фильтрую по экспериментальной группе == 3
