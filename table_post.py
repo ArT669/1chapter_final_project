@@ -2,6 +2,7 @@ from database import Base, SessionLocal
 from sqlalchemy import Column, Integer, String
 
 class Post(Base):
+    """Оборачивает БД post в ORM"""
     __tablename__ = "post"
     id = Column(Integer, primary_key=True)
     text = Column(String)
